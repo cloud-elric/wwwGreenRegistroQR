@@ -78,35 +78,23 @@ class SiteController extends Controller {
 	public function actionRegistro(){
 		$usuario = new EntUsuarios ();
 
-		
-
 		if ($usuario->load ( Yii::$app->request->post () )) {
 
 			$usuario->txt_token = $this->getToken();
 			if ($usuario->save ()) {
 
-				$premio = CatPremios::find()->orderBy(new Expression('rand()'))->one();
-
-				$premioUsuario = new RelUsuarioPremio();
-				$premioUsuario->id_premio = $premio->id_premio;
-				$premioUsuario->id_usuario = $usuario->id_usuario;
-				$premioUsuario->txt_token = $this->getToken();
-				$premioUsuario->save();
-
 				$link = Yii::$app->urlManager->createAbsoluteUrl([
-					'site/ver-premio?token=' . $premioUsuario->txt_token
+					'site/vista-codigo?token=' . $usuario->txt_token
 				]);
 				$urlCorta = $this->getShortUrl($link);
 				
-				$mensajeTexto = "Gracias por participar podrás consultar tu premio en la siguiente liga: ".$urlCorta;
+				$mensajeTexto = "Gracias por participar podrás consultar tus datos en la siguiente liga: ".$urlCorta;
 				
 				$mensajes = new Mensajes();
 				$resp = $mensajes->mandarMensage($mensajeTexto, $usuario->txt_telefono_celular);
 
 				return $this->render('finalizar');
 			}
-
-			
 		}
 
 		return $this->render ( 'registro', [
@@ -135,16 +123,32 @@ class SiteController extends Controller {
 		return $server_output;
 	}
 
-	public function actionVerPremio($token=""){
-		$nombrePremio = "<h3>¡Estuviste muy cerca!</h3>
-			<h1>Mejor suerte para la próxima</h1>
-			<p>Fiesta Americana agradece tu participación.</p>";
-		$usuarioPremio = RelUsuarioPremio::find()->where(['txt_token'=>$token])->one();
+	public function actionVistaCodigo($token=""){
+		$usuario = EntUsuarios::find()->where(['txt_token'=>$token])->one();
 
-		if($usuarioPremio){
-			$nombrePremio = $usuarioPremio->idPremio;
-			return $this->render('premio',['premio'=>$nombrePremio]);
-		}	
+		return $this->render ( 'vista-qr',[
+			'usuario' => $usuario
+		]);
+	}
+
+	public function actionVerCodigo($token=""){
+		require __DIR__.'\..\vendor\phpqrcode\qrlib.php';
+
+		$link = Yii::$app->urlManager->createAbsoluteUrl([
+			'site/ver-datos?token=' . $token
+		]);
+		
+		// outputs image directly into browser, as PNG stream
+		\QRcode::png($link);
+		exit();
+	}
+
+	public function actionVerDatos($token=""){
+		$usuario = EntUsuarios::find()->where(['txt_token'=>$token])->one();
+
+		return $this->render ( 'vista-datos',[
+			'usuario' => $usuario
+		]);
 	}
 
 	/**
