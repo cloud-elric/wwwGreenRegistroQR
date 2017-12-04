@@ -177,8 +177,8 @@ class SiteController extends Controller {
 	/**
 	 * Descarga un csv con la informacion necesaria
 	 */
-	public function actionDescargarRegistros3289ldksd339ffd3jl(){
-		$usuarios = ViewUsuarioDatos::find()->all();
+	public function actionDescargarRegistrossd339ffd3jl(){
+		$usuarios = EntUsuarios::find()->all();
 
 		$arrayCsv = [ ];
 		$i = 0;
@@ -191,7 +191,7 @@ class SiteController extends Controller {
 			$arrayCsv [$i] ['txtEmail'] = $data->txt_email;
 			$arrayCsv [$i] ['fchRegistro'] = $data->fch_registro;
 			$arrayCsv [$i] ['aceptoTerminos'] = $data->acepto_terminos;
-			$arrayCsv [$i] ['premio'] = $data->txt_premio;
+			$arrayCsv [$i] ['numPelotas'] = $data->num_pelotas;
 			
 
 			$i++;
@@ -221,7 +221,7 @@ class SiteController extends Controller {
 				'Email',
 				'Fecha registro',
 				'Acepto terminos',
-				'Premio'
+				'# pelotas'
 		]
 		 );
 
