@@ -88,7 +88,7 @@ class SiteController extends Controller {
 				]);
 				$urlCorta = $this->getShortUrl($link);
 				
-				$mensajeTexto = "Gracias por participar podrás consultar tus datos en la siguiente liga: ".$urlCorta;
+				$mensajeTexto = "Gracias por participar puedes consultar tus datos en la siguiente liga: ".$urlCorta;
 				
 				$mensajes = new Mensajes();
 				$resp = $mensajes->mandarMensage($mensajeTexto, $usuario->txt_telefono_celular);
@@ -132,7 +132,7 @@ class SiteController extends Controller {
 	}
 
 	public function actionVerCodigo($token=""){
-		require __DIR__.'\..\vendor\phpqrcode\qrlib.php';
+		require __DIR__.'/../vendor/phpqrcode/qrlib.php';
 
 		$link = Yii::$app->urlManager->createAbsoluteUrl([
 			'site/ver-datos?token=' . $token
