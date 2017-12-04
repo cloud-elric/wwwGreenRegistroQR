@@ -15,6 +15,7 @@ use Yii;
  * @property string $txt_email
  * @property string $num_edad
  * @property string $fch_registro
+ * @property string $num_pelotas
  * @property string $b_aceptar_terminos
  *
  * @property RelUsuarioPremio[] $relUsuarioPremios
@@ -36,14 +37,12 @@ class EntUsuarios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['txt_nombre_completo', 'txt_token', 'txt_telefono_celular', 'txt_email', 'txt_cp'], 'required', 'message'=>'Campo requerido'],
-            [['num_edad', 'b_aceptar_terminos'], 'integer'],
+            [['txt_nombre_completo', 'txt_token', 'txt_telefono_celular', 'num_pelotas'], 'required'],
+            [['num_edad', 'num_pelotas', 'b_aceptar_terminos'], 'integer'],
             [['fch_registro'], 'safe'],
             [['txt_nombre_completo', 'txt_token'], 'string', 'max' => 150],
             [['txt_telefono_celular'], 'string', 'max' => 10],
             [['txt_cp'], 'string', 'max' => 5],
-            [['txt_telefono_celular'], 'string', 'max' => 10, 'min' => 10, 'tooLong' => 'El campo no debe superar 10 dígitos','tooShort' => 'El campo debe ser mínimo de 10 digítos'],
-            [['txt_email'], 'email', 'message'=>'Formato de email no válido'],
             [['txt_email'], 'string', 'max' => 50],
         ];
     }
@@ -62,6 +61,7 @@ class EntUsuarios extends \yii\db\ActiveRecord
             'txt_email' => 'Txt Email',
             'num_edad' => 'Num Edad',
             'fch_registro' => 'Fch Registro',
+            'num_pelotas' => 'Num Pelotas',
             'b_aceptar_terminos' => 'B Aceptar Terminos',
         ];
     }

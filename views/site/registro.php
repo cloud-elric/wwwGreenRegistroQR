@@ -44,6 +44,13 @@ $this->title="Registro";
 						'maxlength' => 10,
 						'placeholder'=>'Teléfono'
 				] )->label(false);
+
+				// Genera un input
+				echo $form->field ( $usuario, 'num_pelotas' )->textInput ( [
+					'type'=>'number',
+					'maxlength' => 10,
+					'placeholder'=>'Numero de pelotas'
+			] )->label(false);
 				?>
 				<!---->
 				<div class="terminos-wrapper">
