@@ -144,9 +144,7 @@ class SiteController extends Controller {
 		if($usuarioPremio){
 			$nombrePremio = $usuarioPremio->idPremio;
 			return $this->render('premio',['premio'=>$nombrePremio]);
-		}
-
-		
+		}	
 	}
 
 	/**
