@@ -4,7 +4,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-$this->title = 'Fiesta americana';
+$this->title = '24 ANIVERSARIO CENTRO COMERCIAL SANTA FE';
 ?>
 
 <div class="container container-home">
