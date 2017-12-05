@@ -3577,10 +3577,21 @@ body {
     margin-top: 100px; }
 
 .container-premio {
-  background-image: url("../images/logo-fa-with-ribbon.png");
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: 60%; }
+  background-image: url("../images/web-bkgd.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+  .container-premio h3 {
+    color: #E4C34B; }
+  .container-premio h4 {
+    margin: 24px;
+    text-transform: uppercase; }
+  .container-premio p {
+    width: 400px;
+    text-align: center; }
+  .container-premio img {
+    margin: 40px;
+    width: 250px; }
 
 .container-home {
   justify-content: center;
