@@ -202,7 +202,36 @@ $(document).ready(function(){
 	    }
 	  });
 
+	// Flipping panel Toggle via BUTTON CLICK
+	var isFlipped = false
+	$('.js-flip-panel').click(function(e){
+		e.preventDefault();
+		console.log("Fliping panel");
+		if (isFlipped) {
+			$('.flip-panel').removeClass('flip');
+			isFlipped = false
+		} else {
+			$('.flip-panel').addClass('flip');
+			isFlipped = true
+		}
+	});
+
+	$('.js-shake-panel').click(function(e){ 
+		e.preventDefault();
+		shake();
+	});
+
+	function shake(){
+		$('.flip-panel').addClass('shake');
+		setTimeout(removeShakeClass, 500);
+	}
+
+	function removeShakeClass(){
+		$('.flip-panel').removeClass('shake');
+	}
+
 });
+
 
 /**
  * Valida que cuando se aprieta un boton sea solo números
