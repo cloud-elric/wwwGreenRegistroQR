@@ -33,7 +33,6 @@ a
 	color: $link
 	font:
 		family: $f-base
-		size: 16px
 		weight: $bold
 	text-decoration: none
 	+transition(all 0.3s ease-in)
@@ -42,9 +41,16 @@ a
 		text-decoration: none
 		+transition(all 0.3s ease-out)
 
+p,ol,ul
+	font-size: 1em
+	+respond-to(sl)
+		font-size: .8em
+
 ol
 	padding-left: 3rem
 	margin: 16px 0
+	+respond-to(sl)
+		padding-left: 1em
 	li
 		margin: 8px 0
 
@@ -126,6 +132,10 @@ hr
 	+border-radius(10px)
 	box-shadow: 0 3px 0 rgba(0,0,0,.05)
 	min-width: 100px
+	+respond-to(sl)
+		width: 100% 
+		font-size: .7em
+		font-weight: 400
 
 .btn.active.focus,
 .btn.active:focus,
@@ -187,7 +197,7 @@ hr
 .btn-primary:active
 	color: $white
 	background-color: $accent
-	border-color: $accent
+	border: none
 	background-image: none
 
 

@@ -113,7 +113,14 @@ $(document).ready(function(){
 		e.preventDefault();
 		step1();
 	});
-
+	
+	$('#form-usuario-participar').on('afterValidate', function (e, messages, errorAttributes) {
+        if(errorAttributes.length > 0){
+            shake();
+            return false;
+        }
+        
+    });
 
 	$('body').on(
 		'beforeSubmit',
@@ -123,6 +130,7 @@ $(document).ready(function(){
 
 			// return false if form still have some validation errors
 			if (form.find('.has-error').length) {
+				shake();
 				return false;
 			}
 
@@ -221,17 +229,20 @@ $(document).ready(function(){
 		shake();
 	});
 
-	function shake(){
-		$('.flip-panel').addClass('shake');
-		setTimeout(removeShakeClass, 500);
-	}
 
-	function removeShakeClass(){
-		$('.flip-panel').removeClass('shake');
-	}
 
 });
 
+
+
+function shake(){
+	$('.form-wrapper').addClass('shake');
+	setTimeout(removeShakeClass, 500);
+}
+
+function removeShakeClass(){
+	$('.form-wrapper').removeClass('shake');
+}
 
 /**
  * Valida que cuando se aprieta un boton sea solo números

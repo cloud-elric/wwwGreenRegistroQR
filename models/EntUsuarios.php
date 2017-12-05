@@ -54,14 +54,14 @@ class EntUsuarios extends \yii\db\ActiveRecord
     {
         return [
             'id_usuario' => 'Id Usuario',
-            'txt_nombre_completo' => 'Txt Nombre Completo',
-            'txt_token' => 'Txt Token',
-            'txt_telefono_celular' => 'Txt Telefono Celular',
-            'txt_cp' => 'Txt Cp',
-            'txt_email' => 'Txt Email',
-            'num_edad' => 'Num Edad',
-            'fch_registro' => 'Fch Registro',
-            'num_pelotas' => 'Num Pelotas',
+            'txt_nombre_completo' => 'Nombre Completo',
+            'txt_token' => 'Token',
+            'txt_telefono_celular' => 'Teléfono Celular',
+            'txt_cp' => 'Código postal',
+            'txt_email' => 'Correo electrónico',
+            'num_edad' => 'Edad',
+            'fch_registro' => 'Fecha de Registro',
+            'num_pelotas' => 'Numero de Esferas',
             'b_aceptar_terminos' => 'B Aceptar Terminos',
         ];
     }
