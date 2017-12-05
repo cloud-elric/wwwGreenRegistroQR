@@ -10,8 +10,8 @@ $this->title="Gracias por participar";
 
 <!-- Premio contenedor -->
 	<div class="js-premio-contenedor premio">
-		<h2>¡Gracias por participar!</h2>
-	    <h3>Recibirás al instante un QR al celular registrado como comprobante de participación, el cual deberás conservar para poder reclamar el premio en caso de resultar ganador, así como el ó los tickets participantes.</h3>
+		<h3>¡Gracias por participar!</h3>
+	    <p>Recibirás al instante un QR al celular registrado como comprobante de participación, el cual deberás conservar para poder reclamar el premio en caso de resultar ganador, así como el ó los tickets participantes.</p>
 			
 		<a class="btn btn-primary" href="<?=Url::base()?>">Finalizar</a>
 		
