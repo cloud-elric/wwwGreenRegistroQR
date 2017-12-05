@@ -75,6 +75,10 @@ class SiteController extends Controller {
 		return $this->render ( 'inicio' );
 	}
 
+	public function actionFinalizar(){
+		return $this->render('finalizar');
+	}
+
 	public function actionRegistro(){
 		$usuario = new EntUsuarios ();
 

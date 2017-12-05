@@ -6,8 +6,9 @@
 <div class="container container-premio">
 
 <h3>Gracias por participar</h3>
-<h4>Conserva este Código QR</h4>
-<p>De resultar ganador te contactaremos para validar los datos de este código junto con tu ticket de compra</p>
+<p>Conserva el QR para poder reclamar el premio en caso de resultar ganador, así como el o los tickets participantes
+Publicación de ganador 12 de diciembre de 2017  en <a href="www.facebook.com/CentroSantaFe">www.facebook.com/CentroSantaFe</a></p>
+<h4>Dudas al 01800 467 1897</h4>
 <img src="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/ver-codigo?token=' . $usuario->txt_token]) ?>" />
 <div class="terminos-wrapper">
 	<div class="check-box js-modal-trigger js-check-box-aviso"></div>

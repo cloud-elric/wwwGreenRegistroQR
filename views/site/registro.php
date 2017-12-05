@@ -56,10 +56,10 @@ $this->title="Registro";
 				echo $form->field ( $usuario, 'num_pelotas' )->textInput ( [
 					'type'=>'number',
 					'maxlength' => 10,
-					'placeholder'=>'Numero de pelotas'
-			] )->label(false);
+					'placeholder'=>'Número de esferas'
+				] )->label(false);
 				?>
-				<h6 class="note">código de promoción <span>CSF17</span> </h6>
+				<h6 class="note">Código de promoción <span>CSF17</span> </h6>
 				
 				<!---->
 				<div class="terminos-wrapper">
@@ -77,26 +77,6 @@ $this->title="Registro";
 			ActiveForm::end ();
 			?>
 		</div>
-	
-	    <!-- Vertical Flipping Panel  -->
-<!-- 	    <div class="row">
-	      <div class="panel flip-panel">
-	        <div class="front">
-	          <div class="fp-front">
-	            <p></p>
-	          </div>
-	        </div>
-	        <div class="back">
-	          <div class="fp-back">
-	            <p>Vuelta</p>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-
-        <a class="btn btn-default btn-bubble js-shake-panel" href="">
-	      <span><em>Download</em><i class="ion ion-code-download" aria-hidden="true"></i></span>
-	    </a> -->
 
 	</div>
 	<!-- Fin contenedor de registro -->

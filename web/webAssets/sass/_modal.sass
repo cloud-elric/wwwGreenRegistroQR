@@ -69,6 +69,8 @@
 			h2
 				font-size: 1.3em
 				color: $black
+				+respond-to(sl)
+					font-size: 1em
 			h4
 				font-weight: $bold
 				font-size: 1.2em
@@ -79,6 +81,8 @@
 			ol,ul
 				padding-left: 3rem
 				margin: 16px 0
+				+respond-to(sl)
+					padding-left: 1em
 				li
 					margin: 8px 0
 			ol.pie-de-pagina
@@ -87,6 +91,8 @@
 			.accept-btn-wrapper
 				margin-top: 50px
 				text-align: center
+				+respond-to(sl)
+					width: 100%
 		.panel-footer
 			width: 100%
 			background-color: $default
@@ -107,11 +113,11 @@
 	+respond-to(tp)
 		width: 70%
 	+respond-to(sl)
-		width: 90%
+		width: 95%
 	+respond-to(sp)
-		width: 90%
+		width: 95%
 
 .modal-wide
 	width: 80%
 	+respond-to(sp)
-		width: 90%
+		width: 100%
