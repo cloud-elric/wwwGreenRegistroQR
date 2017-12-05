@@ -1,6 +1,6 @@
 <?php
 
-use app\modules\ModUsuarios\models\Utils;
+use app\models\Utils;
 echo $usuario->txt_nombre_completo;
 echo "<br>";
 echo $usuario->txt_telefono_celular;
