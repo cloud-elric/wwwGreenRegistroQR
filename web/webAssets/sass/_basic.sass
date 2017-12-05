@@ -42,6 +42,12 @@ a
 		text-decoration: none
 		+transition(all 0.3s ease-out)
 
+ol
+	padding-left: 3rem
+	margin: 16px 0
+	li
+		margin: 8px 0
+
 /* img */
 img
 	+transition(all 0.3s ease-in)
@@ -113,7 +119,7 @@ hr
 	user-select: none
 	vertical-align: middle
 	white-space: nowrap
-	+border-radius(4px)
+	+border-radius(10px)
 	box-shadow: 0 3px 0 rgba(0,0,0,.05)
 	min-width: 100px
 
@@ -144,9 +150,9 @@ hr
 	opacity: .65
 
 .btn-primary
-	color: $white
-	background-color: $primary
-	border-color: $primary
+	color: $primary
+	background-color: $secondary
+	border-color: $secondary
 
 .btn-secondary
 	color: $white
@@ -165,8 +171,8 @@ hr
 .btn-primary:hover,
 .btn-secondary:hover
 	color: $white
-	background-color: $secondary
-	border-color: $secondary
+	background-color: $primary
+	border-color: $primary
 
 .btn-primary.focus,
 .btn-primary:focus
@@ -182,7 +188,8 @@ hr
 
 
 .highlight
-	color: $accent
+	color: $secondary
+	font-weight: $bold
 
 .bold
 	font-weight: $bold

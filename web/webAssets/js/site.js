@@ -40,19 +40,15 @@ function step3() {
 	$(contenedorGlobal).addClass('container-premio');
 }
 
-function abrirAviso() {
-	$('.aviso-box').show();
-}
 
-function cerrarAviso() {
-	$('.aviso-box').hide();
-}
 
-$(document).ready(function () {
+
+$(document).ready(function(){
+	console.log("Jquery Running");
 
 	// Muestra el aviso de privacidad
 	$('.terminos-wrapper .message').on('click', function () {
-		abrirAviso();
+		showOverlay(overlayIsShowing)
 	});
 
 	// Aceptar aviso de privacidad
@@ -62,7 +58,7 @@ $(document).ready(function () {
 		$('.js-check-box-aviso').css('background', '#D98C34');
 
 		$('.js-check-box-aviso').addClass('js-check-box-aviso-checked');
-		cerrarAviso();
+		showOverlay(overlayIsShowing)
 	});
 
 	$('.js-check-box-aviso').on('click', function (e) {
@@ -74,7 +70,7 @@ $(document).ready(function () {
 
 			$('.js-check-box-aviso').removeClass('js-check-box-aviso-checked');
 		} else {
-			abrirAviso();
+			showOverlay(overlayIsShowing)
 		}
 	});
 
@@ -170,6 +166,41 @@ $(document).ready(function () {
 			//return false;
 		});
 
+
+
+
+	// Modal Show & Dismiss
+	  var overlayIsShowing = false
+
+	  function showOverlay(overlayState){
+	    if (overlayState) {
+	      $('.overlay').removeClass('visible');
+	      $('.overlay').css('position','absolute');
+	      overlayIsShowing = false
+	    } else {
+	      $('.overlay').addClass('visible');
+	      $('.overlay').css('position','fixed');
+	      overlayIsShowing = true
+	    }
+	  }
+
+	  // $('.js-modal-trigger').click(function(){
+	  //   showOverlay(overlayIsShowing)
+	  // });
+
+	  $('.js-dismiss-modal').click(function(e){
+	    console.log(this);
+	    e.preventDefault();
+	    showOverlay(overlayIsShowing)
+	  });
+
+	  $('.overlay').click(function(e){
+	    console.log(this);
+	    e.preventDefault();
+	    if (e.target === this){
+	      showOverlay(overlayIsShowing)
+	    }
+	  });
 
 });
 
