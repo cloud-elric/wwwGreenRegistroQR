@@ -93,6 +93,10 @@ $(document).ready(function(){
 		validarSoloNumeros(e);
 	});
 
+	$("#entusuarios-num_edad").keydown(function (e){
+		validarSoloNumeros(e);
+	})
+
 	// Al campo de texto número validara solo numeros
 	$('#entusuarios-txt_cp').keydown(function (e) {
 		validarSoloNumeros(e);

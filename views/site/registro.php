@@ -42,6 +42,10 @@ $this->title="Registro";
 					'maxlength' => 5,
 					'placeholder'=>'C.P.'			
 				] )->label(false);
+				echo $form->field ( $usuario, 'num_edad' )->textInput ( [
+					'maxlength' => 2,
+					'placeholder'=>'Edad'			
+				] )->label(false);
 				
 				// Genera un input
 				echo $form->field ( $usuario, 'txt_telefono_celular' )->textInput ( [
@@ -58,8 +62,14 @@ $this->title="Registro";
 					'maxlength' => 10,
 					'placeholder'=>'Número de esferas'
 				] )->label(false);
+
+				echo $form->field ( $usuario, 'txt_codigo_promocion' )->textInput ( [
+					'type'=>'number',
+					'placeholder'=>'CSF17'
+				] )->label(false);
+				
 				?>
-				<h6 class="note">Código de promoción <span>CSF17</span> </h6>
+				
 				
 				<!---->
 				<div class="terminos-wrapper">

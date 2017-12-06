@@ -196,6 +196,8 @@ class SiteController extends Controller {
 			$arrayCsv [$i] ['fchRegistro'] = $data->fch_creacion;
 			$arrayCsv [$i] ['aceptoTerminos'] = $data->b_aceptar_terminos;
 			$arrayCsv [$i] ['numPelotas'] = $data->num_pelotas;
+			$arrayCsv [$i] ['edad'] = $data->num_edad;
+			$arrayCsv [$i] ['txt_codigo_promocion'] = $data->txt_codigo_promocion;
 			
 
 			$i++;
@@ -225,7 +227,10 @@ class SiteController extends Controller {
 				'Email',
 				'Fecha registro',
 				'Acepto terminos',
-				'# pelotas'
+				'# Esferas',
+				'Edad',
+				'C. promocional'
+
 		]
 		 );
 
