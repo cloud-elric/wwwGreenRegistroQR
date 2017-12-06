@@ -14,6 +14,7 @@ use app\models\RelUsuarioPremio;
 use app\models\ViewUsuarioDatos;
 use app\models\Mensajes;
 use app\models\CatPremios;
+use app\models\Utils;
 
 class SiteController extends Controller {
 	/**
@@ -85,6 +86,8 @@ class SiteController extends Controller {
 		if ($usuario->load ( Yii::$app->request->post () )) {
 
 			$usuario->txt_token = $this->getToken();
+			date_default_timezone_set('America/Mexico_City');
+			$usuario->fch_creacion = Utils::getFechaActual();
 			if ($usuario->save ()) {
 
 				$link = Yii::$app->urlManager->createAbsoluteUrl([
