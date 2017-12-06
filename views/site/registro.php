@@ -64,7 +64,6 @@ $this->title="Registro";
 				] )->label(false);
 
 				echo $form->field ( $usuario, 'txt_codigo_promocion' )->textInput ( [
-					'type'=>'number',
 					'placeholder'=>'CSF17'
 				] )->label(false);
 				
