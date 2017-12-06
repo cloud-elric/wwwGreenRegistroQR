@@ -92,7 +92,7 @@ class SiteController extends Controller {
 				]);
 				$urlCorta = $this->getShortUrl($link);
 				
-				$mensajeTexto = "Gracias por participar conserva el código QR que adjunto en la siguiente liga, para poder reclamar el premio en caso de resultar ganador, así como el o los tickets participantes: ".$urlCorta;
+				$mensajeTexto = "Gracias por participar conserva el código QR adjunto, para poder reclamar el premio.: ".$urlCorta;
 				
 				$mensajes = new Mensajes();
 				$resp = $mensajes->mandarMensage($mensajeTexto, $usuario->txt_telefono_celular);
