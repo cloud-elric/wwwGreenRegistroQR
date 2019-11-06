@@ -15,4 +15,3 @@ $this->title="Gracias por participar";
 	<!-- Fin premio contenedor-->
 
 </div>
-<img class="logo" src="<?=Url::base()?>/webAssets/images/logo-fa.png" alt="Fiesta Americana">

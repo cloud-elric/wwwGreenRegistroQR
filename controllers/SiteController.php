@@ -14,6 +14,7 @@ use app\models\RelUsuarioPremio;
 use app\models\ViewUsuarioDatos;
 use app\models\Mensajes;
 use app\models\CatPremios;
+use app\models\Utils;
 
 class SiteController extends Controller {
 	/**
@@ -75,38 +76,32 @@ class SiteController extends Controller {
 		return $this->render ( 'inicio' );
 	}
 
+	public function actionFinalizar(){
+		return $this->render('finalizar');
+	}
+
 	public function actionRegistro(){
 		$usuario = new EntUsuarios ();
-
-		
 
 		if ($usuario->load ( Yii::$app->request->post () )) {
 
 			$usuario->txt_token = $this->getToken();
+			date_default_timezone_set('America/Mexico_City');
+			$usuario->fch_creacion = Utils::getFechaActual();
 			if ($usuario->save ()) {
 
-				$premio = CatPremios::find()->orderBy(new Expression('rand()'))->one();
-
-				$premioUsuario = new RelUsuarioPremio();
-				$premioUsuario->id_premio = $premio->id_premio;
-				$premioUsuario->id_usuario = $usuario->id_usuario;
-				$premioUsuario->txt_token = $this->getToken();
-				$premioUsuario->save();
-
 				$link = Yii::$app->urlManager->createAbsoluteUrl([
-					'site/ver-premio?token=' . $premioUsuario->txt_token
+					'site/vista-codigo?token=' . $usuario->txt_token
 				]);
 				$urlCorta = $this->getShortUrl($link);
 				
-				$mensajeTexto = "Gracias por participar podrás consultar tu premio en la siguiente liga: ".$urlCorta;
+				$mensajeTexto = "Gracias por participar conserva el codigo QR adjunto, para poder reclamar el premio.: ".$urlCorta;
 				
 				$mensajes = new Mensajes();
 				$resp = $mensajes->mandarMensage($mensajeTexto, $usuario->txt_telefono_celular);
 
 				return $this->render('finalizar');
 			}
-
-			
 		}
 
 		return $this->render ( 'registro', [
@@ -135,18 +130,32 @@ class SiteController extends Controller {
 		return $server_output;
 	}
 
-	public function actionVerPremio($token=""){
-		$nombrePremio = "<h3>¡Estuviste muy cerca!</h3>
-			<h1>Mejor suerte para la próxima</h1>
-			<p>Fiesta Americana agradece tu participación.</p>";
-		$usuarioPremio = RelUsuarioPremio::find()->where(['txt_token'=>$token])->one();
+	public function actionVistaCodigo($token=""){
+		$usuario = EntUsuarios::find()->where(['txt_token'=>$token])->one();
 
-		if($usuarioPremio){
-			$nombrePremio = $usuarioPremio->idPremio;
-			return $this->render('premio',['premio'=>$nombrePremio]);
-		}
+		return $this->render ( 'vista-qr',[
+			'usuario' => $usuario
+		]);
+	}
 
+	public function actionVerCodigo($token=""){
+		require __DIR__.'/../vendor/phpqrcode/qrlib.php';
+
+		$link = Yii::$app->urlManager->createAbsoluteUrl([
+			'site/ver-datos?token=' . $token
+		]);
 		
+		// outputs image directly into browser, as PNG stream
+		\QRcode::png($link);
+		exit();
+	}
+
+	public function actionVerDatos($token=""){
+		$usuario = EntUsuarios::find()->where(['txt_token'=>$token])->one();
+
+		return $this->render ( 'vista-datos',[
+			'usuario' => $usuario
+		]);
 	}
 
 	/**
@@ -175,8 +184,8 @@ class SiteController extends Controller {
 	/**
 	 * Descarga un csv con la informacion necesaria
 	 */
-	public function actionDescargarRegistros3289ldksd339ffd3jl(){
-		$usuarios = ViewUsuarioDatos::find()->all();
+	public function actionDescargarRegistrossd339ffd3jl(){
+		$usuarios = EntUsuarios::find()->all();
 
 		$arrayCsv = [ ];
 		$i = 0;
@@ -187,9 +196,11 @@ class SiteController extends Controller {
 			$arrayCsv [$i] ['telefonoCelular'] = $data->txt_telefono_celular;
 			$arrayCsv [$i] ['codigoPostal'] = $data->txt_cp;
 			$arrayCsv [$i] ['txtEmail'] = $data->txt_email;
-			$arrayCsv [$i] ['fchRegistro'] = $data->fch_registro;
-			$arrayCsv [$i] ['aceptoTerminos'] = $data->acepto_terminos;
-			$arrayCsv [$i] ['premio'] = $data->txt_premio;
+			$arrayCsv [$i] ['fchRegistro'] = $data->fch_creacion;
+			$arrayCsv [$i] ['aceptoTerminos'] = $data->b_aceptar_terminos;
+			$arrayCsv [$i] ['numPelotas'] = $data->num_pelotas;
+			$arrayCsv [$i] ['edad'] = $data->num_edad;
+			$arrayCsv [$i] ['txt_codigo_promocion'] = $data->txt_codigo_promocion;
 			
 
 			$i++;
@@ -219,7 +230,10 @@ class SiteController extends Controller {
 				'Email',
 				'Fecha registro',
 				'Acepto terminos',
-				'Premio'
+				'# Esferas',
+				'Edad',
+				'C. promocional'
+
 		]
 		 );
 
